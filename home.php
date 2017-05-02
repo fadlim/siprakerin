@@ -230,8 +230,8 @@ if ($_SESSION["login"] == TRUE) {
 
                             <ul class="dropdown-menu">
                                 <!-- <li><a href="?menu=param">Parameter Penilaian</a></li> -->
-                                <li><a href="?menu=nilaisek">Nilai TKJ</a></li>
-                                <li><a href="?menu=nilaidudi">Nilai Akuntansi</a></li>
+                                <li><a href="?menu=nilaidudi&jur=6017">Nilai TKJ</a></li>
+                                <li><a href="?menu=nilaidudi&jur=6018">Nilai Akuntansi</a></li>
                             </ul>
                         </li>
                         <?php

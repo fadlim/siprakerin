@@ -2,6 +2,7 @@
    include "koneksi.php";
 
    $act=$_GET['act'];
+   $jur=$_GET['jur'];
    $query=mysql_query("SELECT * 
                         FROM 
                         tbl_nilaidudi
@@ -13,7 +14,8 @@
                         tbl_nilaidudi.id_pembdudi=tbl_pembdudi.id_pembdudi
                         AND tbl_dataprakerin.id_dtprakerin = tbl_pembdudi.id_dtprakerin 
                         AND mst_siswa.nis = tbl_dataprakerin.nis
-                        AND mst_siswa.id_jur = mst_jurusan.id_jur");
+                        AND mst_siswa.id_jur = mst_jurusan.id_jur
+                        AND mst_siswa.id_jur = '$jur'");
    $jum=mysql_num_rows($query);
 ?>
 <html lang="en" class="no-js">
@@ -78,14 +80,7 @@
                     <th>Nama Siswa</th>
                     <th>Jurusan</th>
                     <th>Perusahaan</th>
-                    <th>Pembimbing Perusahaan</th>
-                    <th>Nilai Teknis</th>
-                    <th>Nilai Non Teknis</th>
-                    <th>Rata Rata Nilai</th>
-                    <th>Grade</th>
-                    <th>Sakit</th>
-                    <th>Izin</th>
-                    <th>Absent</th>
+                    <th>Pembimbing Perusahaan</th>                    
                     <th>Action</th>
                  </tr>
               </thead>
@@ -105,7 +100,8 @@
                                           tbl_nilaidudi.id_pembdudi=tbl_pembdudi.id_pembdudi
                                           AND tbl_dataprakerin.id_dtprakerin = tbl_pembdudi.id_dtprakerin 
                                           AND mst_siswa.nis = tbl_dataprakerin.nis
-                                          AND mst_siswa.id_jur = mst_jurusan.id_jur");
+                                          AND mst_siswa.id_jur = mst_jurusan.id_jur
+                                          AND mst_siswa.id_jur = '$jur'");
                     $nmr=$offset+1;
                     $jml=0;
                     while ($data=mysql_fetch_array($query)) {
@@ -118,14 +114,7 @@
                     <td><?php echo $data["nama_siswa"]; ?></td>
                     <td><?php echo $data["nama_jur"]; ?></td>
                     <td><?php echo $data["nama_dudi"]; ?></td>
-                    <td><?php echo $data["nama_pembdudi"]; ?></td>
-                    <td><?php echo $data["nilai_teknis"]; ?></td>
-                    <td><?php echo $data["nilai_nonteknis"]; ?></td>
-                    <td><?php echo $data["nilai_ratarataangka"]; ?></td>
-                    <td><?php echo $data["nilai_rataratahuruf"]; ?></td>
-                    <td><?php echo $data["sakit"]; ?></td>
-                    <td><?php echo $data["izin"]; ?></td>
-                    <td><?php echo $data["tanpa_keterangan"]; ?></td>
+                    <td><?php echo $data["nama_pembdudi"]; ?></td>                    
                     <td nowrap="nowrap">
                       <center>
                       <?php
@@ -174,13 +163,13 @@
   var B = "B";
   var C = "C";
   var D = "D";
-  if (rata_rata >= 90 && rata_rata <= 100){
+  if (rata_rata >= 86 && rata_rata <= 100){
     document.getElementById('nilai_hurufdudi').value = A;
   }
-  else if(rata_rata >= 70 && rata_rata <= 89.9){
+  else if(rata_rata >= 76 && rata_rata <= 85.9){
     document.getElementById('nilai_hurufdudi').value = B;
   }
-  else if(rata_rata >= 50 && rata_rata <= 69.9){
+  else if(rata_rata >= 60 && rata_rata <= 75.9){
     document.getElementById('nilai_hurufdudi').value = C;
   }else{
     document.getElementById('nilai_hurufdudi').value = D;
@@ -261,49 +250,56 @@
                             <div class="col-md-9">
                              <input disabled="disabled" type="text" name="nama_pembdudi" id="nama_pembdudi" class="form-control"  placeholder="Enter text">
                             </div>
-                           </div>
-                           <div class="form-group">
-                            <label  class="col-md-3 control-label">Nilai Teknis</label>
-                            <div class="col-md-9">
-                             <input type="text" name="nilai_teknis" class="form-control" onblur="jml()" onkeyup="angka(this);"  placeholder="Enter Numeric">
-                            </div>
-                           </div>
-                           <div class="form-group">
-                            <label  class="col-md-3 control-label">Nilai Non Teknis</label>
-                            <div class="col-md-9">
-                             <input type="text" name="nilai_nonteknis" class="form-control" onblur="jml()" onkeyup="angka(this);"  placeholder="Enter Numeric">
-                            </div>
-                           </div>
-                           <div class="form-group">
-                            <label  class="col-md-3 control-label">Rata Rata Nilai</label>
-                            <div class="col-md-9">
-                             <input type="text" name="nilai_ratarataangka" id="nilai_ratarataangka" onblur="jml()" class="form-control"  placeholder="Enter Numeric">
-                            </div>
-                           </div>
-                           <div class="form-group">
-                            <label  class="col-md-3 control-label">Grade</label>
-                            <div class="col-md-9">
-                             <input type="text" name="nilai_rataratahuruf" id="nilai_hurufdudi" class="form-control"  placeholder="Enter text">
-                            </div>
-                           </div>
-                           <div class="form-group">
-                            <label  class="col-md-3 control-label">Sakit</label>
-                            <div class="col-md-9">
-                             <input type="text" name="sakit" class="form-control" onkeyup="angka(this);"  placeholder="Enter Numeric">
-                            </div>
-                           </div>
-                           <div class="form-group">
-                            <label  class="col-md-3 control-label">Izin</label>
-                            <div class="col-md-9">
-                             <input type="text" name="izin" class="form-control" onkeyup="angka(this);"  placeholder="Enter Numeric">
-                            </div>
-                           </div>
-                           <div class="form-group">
-                            <label  class="col-md-3 control-label">Absent</label>
-                            <div class="col-md-9">
-                             <input type="text" name="tanpa_keterangan" class="form-control" onkeyup="angka(this);"  placeholder="Enter Numeric">
-                            </div>
-                           </div>
+                           </div>     
+
+                           <hr>
+                           <h3>I. Nilai Kompetensi Keahlian</h3>                      
+
+                           <table class="table table-striped table-hover table-bordered">
+                              <thead>
+                                 <tr>
+                                    <th></th>
+                                    <th>Komponen Penilaian</th>                                    
+                                    <th>Nilai</th>
+                                    <th>Grade</th>                                    
+                                 </tr>
+                              </thead>
+                              <tbody>
+                              <?php for ($i=1; $i <=8 ; $i++) { ?>
+                                <tr class="row">
+                                    
+                                    <td><textarea class="form-control" name="componentkbu<?php echo $i;?>"></textarea></td>
+                                    <td><input type="text" name="mark<?php echo $i;?>" class="form-control entry" onkeyup="angka(this);"  placeholder="Enter Numeric"></td>                                    
+                                    <td><input type="hidden" class="total"><input type="text" name="grade<?php echo $i;?>" class="form-control demo"  placeholder="Grade" readonly=""></td>                                    
+                                 </tr>                                                                  
+                              <?php } ?>
+                              </tbody>
+                           </table>                          
+                           <hr>
+                           <h3>II. Nilai Kompetensi Umum</h3>                      
+
+                           <table class="table table-striped table-hover table-bordered">
+                              <thead>
+                                 <tr>
+                                    <th></th>
+                                    <th>Komponen Penilaian</th>                                    
+                                    <th>Nilai</th>
+                                    <th>Grade</th>                                    
+                                 </tr>
+                              </thead>
+                              <tbody>
+                              <?php for ($i=1; $i <=4 ; $i++) { ?>
+                                <tr class="row">                                    
+                                    <td><textarea class="form-control" name="componentku<?php echo $i;?>"></textarea></td>
+                                    <td><input type="text" name="marku<?php echo $i;?>" class="form-control entry" onkeyup="angka(this);"  placeholder="Enter Numeric"></td>                                    
+                                    <td><input type="hidden" class="total"><input type="text" name="gradeu<?php echo $i;?>" class="form-control demo"  placeholder="Grade" readonly=""></td>
+                                </tr>                                                                  
+                              <?php } ?>
+                              </tbody>
+                           </table>
+
+
+
                            <div class="form-actions right">                           
                              <button name="submit" type="reset" class="btn default">Reset</button>  
                              <button name="submit" type="submit" class="btn blue">Submit</button>                            
@@ -311,6 +307,7 @@
                         </div>
                        </form>
                        <!-- END FORM-->  
+                      </div> 
                       </div>
                      </div>
                      <!-- END PORTLET-->
@@ -352,7 +349,7 @@
               e.value = e.value.substring(0,e.value.length-1);
            }
         }
-        function Updatejml()
+        function getGrade()
           {
           nilai1=document.formJml2.nilai_nonteknis.value;
           nilai2=document.formJml2.nilai_teknis.value;
@@ -575,48 +572,51 @@
                              <input disabled="disabled" type="text" name="nama_pembdudi" id="nama_pembdudi" class="form-control"value="<?php echo $data['nama_pembdudi'];?>">
                             </div>
                            </div>
-                           <div class="form-group">
-                            <label  class="col-md-3 control-label">Nilai Teknis</label>
-                            <div class="col-md-9">
-                             <input type="text" name="nilai_teknis" class="form-control" onblur="Updatejml()" value="<?php echo $data['nilai_teknis'];?>">
-                            </div>
-                           </div>
-                           <div class="form-group">
-                            <label  class="col-md-3 control-label">Nilai Non Teknis</label>
-                            <div class="col-md-9">
-                             <input type="text" name="nilai_nonteknis" class="form-control" onblur="Updatejml()" value="<?php echo $data['nilai_nonteknis'];?>">
-                            </div>
-                           </div>
-                           <div class="form-group">
-                            <label  class="col-md-3 control-label">Rata Rata Nilai</label>
-                            <div class="col-md-9">
-                             <input type="text" name="nilai_ratarataangka" id="nilai_ratarataangka" onblur="Updatejml()" class="form-control" value="<?php echo $data['nilai_ratarataangka'];?>">
-                            </div>
-                           </div>
-                           <div class="form-group">
-                            <label  class="col-md-3 control-label">Grade</label>
-                            <div class="col-md-9">
-                             <input type="text" name="nilai_rataratahuruf" id="nilai_hurufdudi" class="form-control" value="<?php echo $data['nilai_rataratahuruf'];?>">
-                            </div>
-                           </div>
-                           <div class="form-group">
-                            <label  class="col-md-3 control-label">Sakit</label>
-                            <div class="col-md-9">
-                             <input type="text" name="sakit" class="form-control" value="<?php echo $data['sakit'];?>">
-                            </div>
-                           </div>
-                           <div class="form-group">
-                            <label  class="col-md-3 control-label">Izin</label>
-                            <div class="col-md-9">
-                             <input type="text" name="izin" class="form-control" value="<?php echo $data['izin'];?>">
-                            </div>
-                           </div>
-                           <div class="form-group">
-                            <label  class="col-md-3 control-label">Absent</label>
-                            <div class="col-md-9">
-                             <input type="text" name="tanpa_keterangan" class="form-control" value="<?php echo $data['tanpa_keterangan'];?>">
-                            </div>
-                           </div>
+                           <hr>
+                           <h3>I. Nilai Kompetensi Keahlian</h3>                      
+
+                           <table class="table table-striped table-hover table-bordered">
+                              <thead>
+                                 <tr>
+                                    <th></th>
+                                    <th>Komponen Penilaian</th>                                    
+                                    <th>Nilai</th>
+                                    <th>Grade</th>                                    
+                                 </tr>
+                              </thead>
+                              <tbody>
+                              <?php for ($i=1; $i <=8 ; $i++) { ?>
+                                <tr class="row">
+                                    
+                                    <td><textarea class="form-control" name="componentkbu<?php echo $i;?>"></textarea></td>
+                                    <td><input type="text" name="mark<?php echo $i;?>" class="form-control entry" onkeyup="angka(this);"  placeholder="Enter Numeric"></td>                                    
+                                    <td><input type="hidden" class="total"><input type="text" name="grade<?php echo $i;?>" class="form-control demo"  placeholder="Grade" readonly=""></td>                                    
+                                 </tr>                                                                  
+                              <?php } ?>
+                              </tbody>
+                           </table>                          
+                           <hr>
+                           <h3>II. Nilai Kompetensi Umum</h3>                      
+
+                           <table class="table table-striped table-hover table-bordered">
+                              <thead>
+                                 <tr>
+                                    <th></th>
+                                    <th>Komponen Penilaian</th>                                    
+                                    <th>Nilai</th>
+                                    <th>Grade</th>                                    
+                                 </tr>
+                              </thead>
+                              <tbody>
+                              <?php for ($i=1; $i <=4 ; $i++) { ?>
+                                <tr class="row">                                    
+                                    <td><textarea class="form-control" name="componentku<?php echo $i;?>"></textarea></td>
+                                    <td><input type="text" name="marku<?php echo $i;?>" class="form-control entry" onkeyup="angka(this);"  placeholder="Enter Numeric"></td>                                    
+                                    <td><input type="hidden" class="total"><input type="text" name="gradeu<?php echo $i;?>" class="form-control demo"  placeholder="Grade" readonly=""></td>
+                                </tr>                                                                  
+                              <?php } ?>
+                              </tbody>
+                           </table>
                      <div class="form-actions right">                           
                         <button name="submit" type="button" class="btn default" onclick="history.back();">Back</button>                          
                      </div>
@@ -636,6 +636,33 @@
       ?>
       </div>
    </div>
+   <script type="text/javascript">
+      var rows = document.getElementsByClassName('row');
+[].forEach.call(rows, function(row) {
+  row.addEventListener('keyup', function(e) {
+    var demo = row.getElementsByClassName('demo')[0];
+    var total = row.getElementsByClassName('total')[0];
+    var entries = row.getElementsByClassName('entry');
+    
+    var score = [].reduce.call(entries, function(sum, entry) {
+      return +entry.value + sum;
+    }, 0);
+    
+    total.value = score || 0;
+    demo.value = getGrade(score);
+  });
+});
+
+function getGrade(score) {
+       if (score >= 86 && score <= 100) { return 'A'; }
+  else if (score >= 76 && score <= 85.9) { return 'B'; }
+  else if (score >= 60 && score <= 75.9) { return 'C'; }
+  else { return 'D'; }
+}
+    function myFunction() {
+        return confirm("Hapus Data Nilai Perusahaan ?");
+    }
+</script>
 </body>
 <!-- END BODY -->
 </html>

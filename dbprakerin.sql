@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2017 at 04:47 PM
--- Server version: 5.6.20
--- PHP Version: 5.5.15
+-- Generation Time: May 02, 2017 at 08:20 AM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 5.5.37
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `dbprakerin`
@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `mst_jurusan`
 --
 
-CREATE TABLE IF NOT EXISTS `mst_jurusan` (
+CREATE TABLE `mst_jurusan` (
   `id_jur` varchar(11) NOT NULL,
   `nama_jur` varchar(25) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -45,7 +45,7 @@ INSERT INTO `mst_jurusan` (`id_jur`, `nama_jur`) VALUES
 -- Table structure for table `mst_kelas`
 --
 
-CREATE TABLE IF NOT EXISTS `mst_kelas` (
+CREATE TABLE `mst_kelas` (
   `id_kelas` int(11) NOT NULL,
   `nama_kelas` varchar(25) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -65,7 +65,7 @@ INSERT INTO `mst_kelas` (`id_kelas`, `nama_kelas`) VALUES
 -- Table structure for table `mst_pembsek`
 --
 
-CREATE TABLE IF NOT EXISTS `mst_pembsek` (
+CREATE TABLE `mst_pembsek` (
   `id_pembsek` varchar(11) NOT NULL,
   `nip` varchar(50) NOT NULL,
   `nama_pembsek` varchar(25) NOT NULL,
@@ -90,7 +90,7 @@ INSERT INTO `mst_pembsek` (`id_pembsek`, `nip`, `nama_pembsek`, `pengajar`, `jab
 -- Table structure for table `mst_siswa`
 --
 
-CREATE TABLE IF NOT EXISTS `mst_siswa` (
+CREATE TABLE `mst_siswa` (
   `nis` varchar(11) NOT NULL,
   `nama_siswa` varchar(25) NOT NULL,
   `tgl_lahir` date NOT NULL,
@@ -117,8 +117,8 @@ INSERT INTO `mst_siswa` (`nis`, `nama_siswa`, `tgl_lahir`, `tempat_lahir`, `alam
 -- Table structure for table `tbl_dataprakerin`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_dataprakerin` (
-`id_dtprakerin` int(11) NOT NULL,
+CREATE TABLE `tbl_dataprakerin` (
+  `id_dtprakerin` int(11) NOT NULL,
   `nis` varchar(11) NOT NULL,
   `id_pembsek` varchar(11) NOT NULL,
   `tgl_daftar` date NOT NULL,
@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `tbl_dataprakerin` (
   `no_telp` varchar(15) NOT NULL,
   `nama_pemimpin` varchar(25) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_dataprakerin`
@@ -150,7 +150,7 @@ INSERT INTO `tbl_dataprakerin` (`id_dtprakerin`, `nis`, `id_pembsek`, `tgl_dafta
 -- Table structure for table `tbl_jadwalmonitoring`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_jadwalmonitoring` (
+CREATE TABLE `tbl_jadwalmonitoring` (
   `id_jadwal` varchar(11) NOT NULL,
   `id_dtprakerin` int(11) NOT NULL,
   `start_date` date NOT NULL,
@@ -171,18 +171,54 @@ INSERT INTO `tbl_jadwalmonitoring` (`id_jadwal`, `id_dtprakerin`, `start_date`, 
 -- Table structure for table `tbl_nilaidudi`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_nilaidudi` (
+CREATE TABLE `tbl_nilaidudi` (
   `id_nilaidudi` varchar(11) NOT NULL,
   `tgl_penilaian` date NOT NULL,
   `id_pembdudi` varchar(11) NOT NULL,
-  `nilai_teknis` int(11) NOT NULL,
-  `nilai_nonteknis` varchar(11) NOT NULL,
-  `nilai_ratarataangka` float NOT NULL,
-  `nilai_rataratahuruf` varchar(11) NOT NULL,
-  `sakit` int(11) NOT NULL,
-  `izin` int(11) NOT NULL,
-  `tanpa_keterangan` int(11) NOT NULL
+  `nilai_kbd1` decimal(10,0) NOT NULL,
+  `nilai_kbd2` decimal(10,0) NOT NULL,
+  `nilai_kbd3` decimal(10,0) NOT NULL,
+  `nilai_kbd4` decimal(10,0) NOT NULL,
+  `nilai_kbd5` decimal(10,0) NOT NULL,
+  `nilai_kbd6` decimal(10,0) NOT NULL,
+  `nilai_kbd7` decimal(10,0) NOT NULL,
+  `nilai_kbd8` decimal(10,0) NOT NULL,
+  `component_kbd1` varchar(200) NOT NULL,
+  `component_kbd2` varchar(200) NOT NULL,
+  `component_kbd3` varchar(200) NOT NULL,
+  `component_kbd4` varchar(200) NOT NULL,
+  `component_kbd5` varchar(200) NOT NULL,
+  `component_kbd6` varchar(200) NOT NULL,
+  `component_kbd7` varchar(200) NOT NULL,
+  `component_kbd8` varchar(200) NOT NULL,
+  `grade1` varchar(2) NOT NULL,
+  `grade2` varchar(2) NOT NULL,
+  `grade3` varchar(2) NOT NULL,
+  `grade4` varchar(2) NOT NULL,
+  `grade5` varchar(2) NOT NULL,
+  `grade6` varchar(2) NOT NULL,
+  `grade7` varchar(2) NOT NULL,
+  `grade8` varchar(2) NOT NULL,
+  `nilai_ku1` decimal(10,0) NOT NULL,
+  `nilai_ku2` decimal(10,0) NOT NULL,
+  `nilai_ku3` decimal(10,0) NOT NULL,
+  `nilai_ku4` decimal(10,0) NOT NULL,
+  `component_ku1` varchar(200) NOT NULL,
+  `component_ku2` varchar(200) NOT NULL,
+  `component_ku3` varchar(200) NOT NULL,
+  `component_ku4` varchar(200) NOT NULL,
+  `gradeu1` varchar(2) NOT NULL,
+  `gradeu2` varchar(2) NOT NULL,
+  `gradeu3` varchar(2) NOT NULL,
+  `gradeu4` varchar(2) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_nilaidudi`
+--
+
+INSERT INTO `tbl_nilaidudi` (`id_nilaidudi`, `tgl_penilaian`, `id_pembdudi`, `nilai_kbd1`, `nilai_kbd2`, `nilai_kbd3`, `nilai_kbd4`, `nilai_kbd5`, `nilai_kbd6`, `nilai_kbd7`, `nilai_kbd8`, `component_kbd1`, `component_kbd2`, `component_kbd3`, `component_kbd4`, `component_kbd5`, `component_kbd6`, `component_kbd7`, `component_kbd8`, `grade1`, `grade2`, `grade3`, `grade4`, `grade5`, `grade6`, `grade7`, `grade8`, `nilai_ku1`, `nilai_ku2`, `nilai_ku3`, `nilai_ku4`, `component_ku1`, `component_ku2`, `component_ku3`, `component_ku4`, `gradeu1`, `gradeu2`, `gradeu3`, `gradeu4`) VALUES
+('1', '2017-05-06', 'PD001', '65', '0', '0', '0', '0', '0', '0', '0', 'wer', '', '', '', '', '', '', '', 'C', '', '', '', '', '', '', '', '78', '0', '0', '0', 'wer', '', '', '', 'B', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -190,7 +226,7 @@ CREATE TABLE IF NOT EXISTS `tbl_nilaidudi` (
 -- Table structure for table `tbl_nilaisekolah`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_nilaisekolah` (
+CREATE TABLE `tbl_nilaisekolah` (
   `id_nilaiSek` varchar(11) NOT NULL,
   `tgl_penilaian` date NOT NULL,
   `id_dtprakerin` int(11) NOT NULL,
@@ -205,7 +241,8 @@ CREATE TABLE IF NOT EXISTS `tbl_nilaisekolah` (
 --
 
 INSERT INTO `tbl_nilaisekolah` (`id_nilaiSek`, `tgl_penilaian`, `id_dtprakerin`, `nilai_teknis`, `nilai_nonteknis`, `nilai_ratarataangka`, `nilai_rataratahuruf`) VALUES
-('NS001', '2017-06-01', 40, 88, '99', 93.5, 'A');
+('NS001', '2017-06-01', 40, 88, '99', 93.5, 'A'),
+('987656', '2017-04-01', 41, 45, '56', 50.5, 'C');
 
 -- --------------------------------------------------------
 
@@ -213,7 +250,7 @@ INSERT INTO `tbl_nilaisekolah` (`id_nilaiSek`, `tgl_penilaian`, `id_dtprakerin`,
 -- Table structure for table `tbl_pembdudi`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_pembdudi` (
+CREATE TABLE `tbl_pembdudi` (
   `id_pembdudi` varchar(11) NOT NULL,
   `id_dtprakerin` int(11) NOT NULL,
   `nama_pembdudi` varchar(50) NOT NULL,
@@ -235,11 +272,11 @@ INSERT INTO `tbl_pembdudi` (`id_pembdudi`, `id_dtprakerin`, `nama_pembdudi`, `al
 -- Table structure for table `tbl_tahunajaran`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_tahunajaran` (
-`id_tahunajaran` int(11) NOT NULL,
+CREATE TABLE `tbl_tahunajaran` (
+  `id_tahunajaran` int(11) NOT NULL,
   `tahun_ajaran` varchar(11) NOT NULL,
   `status` varchar(15) NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_tahunajaran`
@@ -259,14 +296,14 @@ INSERT INTO `tbl_tahunajaran` (`id_tahunajaran`, `tahun_ajaran`, `status`) VALUE
 -- Table structure for table `tbl_user`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_user` (
-`id_user` int(11) NOT NULL,
+CREATE TABLE `tbl_user` (
+  `id_user` int(11) NOT NULL,
   `username` varchar(25) NOT NULL,
   `password` varchar(25) NOT NULL,
   `nama_lengkap` varchar(25) NOT NULL,
   `email` varchar(25) NOT NULL,
   `level` varchar(6) NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_user`
@@ -286,67 +323,67 @@ INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `nama_lengkap`, `emai
 -- Indexes for table `mst_jurusan`
 --
 ALTER TABLE `mst_jurusan`
- ADD PRIMARY KEY (`id_jur`);
+  ADD PRIMARY KEY (`id_jur`);
 
 --
 -- Indexes for table `mst_kelas`
 --
 ALTER TABLE `mst_kelas`
- ADD PRIMARY KEY (`id_kelas`);
+  ADD PRIMARY KEY (`id_kelas`);
 
 --
 -- Indexes for table `mst_pembsek`
 --
 ALTER TABLE `mst_pembsek`
- ADD PRIMARY KEY (`id_pembsek`);
+  ADD PRIMARY KEY (`id_pembsek`);
 
 --
 -- Indexes for table `mst_siswa`
 --
 ALTER TABLE `mst_siswa`
- ADD PRIMARY KEY (`nis`);
+  ADD PRIMARY KEY (`nis`);
 
 --
 -- Indexes for table `tbl_dataprakerin`
 --
 ALTER TABLE `tbl_dataprakerin`
- ADD PRIMARY KEY (`id_dtprakerin`);
+  ADD PRIMARY KEY (`id_dtprakerin`);
 
 --
 -- Indexes for table `tbl_jadwalmonitoring`
 --
 ALTER TABLE `tbl_jadwalmonitoring`
- ADD PRIMARY KEY (`id_jadwal`);
+  ADD PRIMARY KEY (`id_jadwal`);
 
 --
 -- Indexes for table `tbl_nilaidudi`
 --
 ALTER TABLE `tbl_nilaidudi`
- ADD PRIMARY KEY (`id_nilaidudi`);
+  ADD PRIMARY KEY (`id_nilaidudi`);
 
 --
 -- Indexes for table `tbl_nilaisekolah`
 --
 ALTER TABLE `tbl_nilaisekolah`
- ADD PRIMARY KEY (`id_nilaiSek`);
+  ADD PRIMARY KEY (`id_nilaiSek`);
 
 --
 -- Indexes for table `tbl_pembdudi`
 --
 ALTER TABLE `tbl_pembdudi`
- ADD PRIMARY KEY (`id_pembdudi`);
+  ADD PRIMARY KEY (`id_pembdudi`);
 
 --
 -- Indexes for table `tbl_tahunajaran`
 --
 ALTER TABLE `tbl_tahunajaran`
- ADD PRIMARY KEY (`id_tahunajaran`);
+  ADD PRIMARY KEY (`id_tahunajaran`);
 
 --
 -- Indexes for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
- ADD PRIMARY KEY (`id_user`);
+  ADD PRIMARY KEY (`id_user`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -356,17 +393,17 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_dataprakerin`
 --
 ALTER TABLE `tbl_dataprakerin`
-MODIFY `id_dtprakerin` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=42;
+  MODIFY `id_dtprakerin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT for table `tbl_tahunajaran`
 --
 ALTER TABLE `tbl_tahunajaran`
-MODIFY `id_tahunajaran` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id_tahunajaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

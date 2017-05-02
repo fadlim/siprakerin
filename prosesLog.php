@@ -3,9 +3,9 @@ session_start();
 mysql_connect("localhost","root","") or die("Nggak bisa koneksi");
 mysql_select_db("dbprakerin");
 
-$user = $_POST['username'];
-$pwd = $_POST['password'];
-$op = $_GET['op'];
+$user   = $_POST['username'];
+$pwd    = $_POST['password'];
+$op     = $_GET['op'];
 
 
 $cek = mysql_query("SELECT * FROM tbl_user WHERE username='$user' AND password='$pwd'");
