@@ -61,7 +61,46 @@ $view=$_GET['id_nilaidudi'];
 	}
 		
 	elseif($proses=='edit'){
-		mysql_query("UPDATE tbl_nilaidudi SET tgl_penilaian='$tgl_penilaian',id_pembdudi='$id_pembdudi',nilai_teknis='$nilai_teknis',nilai_nonteknis='$nilai_nonteknis',nilai_ratarataangka='$nilai_ratarataangka',nilai_rataratahuruf='$nilai_rataratahuruf',sakit='$sakit',izin='$izin',tanpa_keterangan='$tanpa_keterangan' WHERE id_nilaidudi='$id_nilaidudi'");
+		mysql_query("UPDATE tbl_nilaidudi SET 
+			id_nilaidudi = '$id_nilaidudi',
+			tgl_penilaian = '$tgl_penilaian',
+			id_pembdudi = '$id_pembdudi',
+			nilai_kbd1 = '$mark1',
+			nilai_kbd2 = '$mark2',
+			nilai_kbd3 = '$mark3',
+			nilai_kbd4 = '$mark4',
+			nilai_kbd5 = '$mark5',
+			nilai_kbd6 = '$mark6',
+			nilai_kbd7 = '$mark7',
+			nilai_kbd8 = '$mark8',
+			component_kbd1 = '$componentkbu1',
+			component_kbd2 = '$componentkbu2',
+			component_kbd3 = '$componentkbu3',
+			component_kbd4 = '$componentkbu4',
+			component_kbd5 = '$componentkbu5',
+			component_kbd6 = '$componentkbu6',
+			component_kbd7 = '$componentkbu7',
+			component_kbd8 = '$componentkbu8',
+			grade1 = '$grade1',
+			grade2 = '$grade2',
+			grade3 = '$grade3',
+			grade4 = '$grade4',
+			grade5 = '$grade5',
+			grade6 = '$grade6',
+			grade7 = '$grade7',
+			grade8 = '$grade8',
+			nilai_ku1 = '$marku1',
+			nilai_ku2 = '$marku2',
+			nilai_ku3 = '$marku3',
+			nilai_ku4 = '$marku4',
+			component_ku1 = '$componentku1',
+			component_ku2 = '$componentku2',
+			component_ku3 = '$componentku3',
+			component_ku4 = '$componentku4',
+			gradeu1 = '$gradeu1',
+			gradeu2 = '$gradeu2',
+			gradeu3 = '$gradeu3',
+			gradeu4 = '$gradeu4' WHERE id_nilaidudi='$id_nilaidudi'");
 	}
 	
 	elseif($proses=='hapus'){

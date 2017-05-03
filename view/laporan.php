@@ -61,21 +61,21 @@ vertical-align:bottom;text-align:center;border:solid 1px;
 </td></tr>
 <tr><td colspan=2 class="">
 
-<table border=0 width=250>
+<table border=0 width=350>
 <tr>
-<td width="300">NAMA</td><td>:</td><td><?php echo $data['nama_siswa'];?></td>
+<td width="200">NAMA</td><td>:</td><td><?php echo $data['nama_siswa'];?></td>
 </tr>
 <tr>
-<td width="300">NIM</td><td>:</td><td><?php echo $data['nis'];?></td>
+<td>NIM</td><td>:</td><td><?php echo $data['nis'];?></td>
 </tr>
 <tr>
-<td width="300">TTL</td><td>:</td><td><?php echo $data['tempat_lahir'];?>, <?php echo $data['tgl_lahir'];?></td>
+<td>TTL</td><td>:</td><td><?php echo $data['tempat_lahir'];?>, <?php echo $data['tgl_lahir'];?></td>
 </tr>
 <tr>
-<td width="300">PROGRAM KEAHLIAN</td><td>:</td><td>1212</td>
+<td>PROGRAM KEAHLIAN</td><td>:</td><td><?php echo $data['nama_jur'];?></td>
 </tr>
 <tr>
-<td width="300">TEMPAT PRAKTEK</td><td>:</td><td>1212</td>
+<td>TEMPAT PRAKTEK</td><td>:</td><td><?php echo $data['nama_dudi'];?></td>
 </tr>
 </table>
 
