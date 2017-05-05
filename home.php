@@ -99,6 +99,10 @@ if ($_SESSION["login"] == TRUE) {
                 break;
             case "user" : $namafile = "view/mst_user.php";
                 break;
+            case "frontreport" : $namafile = "view/frontreport.php";
+                break;
+            case "backreport" : $namafile = "view/backreport.php";
+                break;
             case "siswa" : $namafile = "view/mst_siswa.php";
                 break;
             case "mstJur" : $namafile = "view/mst_jur.php";
@@ -209,19 +213,6 @@ if ($_SESSION["login"] == TRUE) {
                                 <span class="fa fa fa-tag"></span>Jadwal Prakerin 
                             </a>
                         </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="#">
-                               <span class="fa fa-align-left"></span>Nilai Prakerin 
-                                <i class="fa fa-angle-down"></i>
-                            </a>
-
-                            <ul class="dropdown-menu">
-                                <!-- <li><a href="?menu=param">Parameter Penilaian</a></li> -->
-                                <li><a href="?menu=nilaisek">Nilai Sekolah</a></li>
-                                <li><a href="?menu=nilaidudi">Nilai Perusahaan</a></li>
-                                <li><a href="?menu=nilaigab">Nilai Prakerin</a></li>
-                            </ul>
-                        </li>
                          <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="#">
                                <span class="fa fa-align-left"></span>Nilai Perusahaan
@@ -253,7 +244,8 @@ if ($_SESSION["login"] == TRUE) {
                             <ul class="dropdown-menu">
                                 <!-- <li><a href="?menu=param">Parameter Penilaian</a></li> -->
                                 <li><a href="?menu=dtPrakerin">Data Prakerin</a></li>
-                                <li><a href="?menu=dtnilaiprakerin">Nilai Prakerin</a></li>
+                                <li><a href="?menu=frontreport">Bagian Depan Sertifikat</a></li>
+                                <li><a href="?menu=backreport">Bagian Belakang Sertifikat</a></li>
                                 <!-- <li><a href="?menu=nilaigab"></a></li> -->
                             </ul>
                         </li>
